@@ -1,0 +1,7 @@
+.DS_Store
+.DS_Store/*
+UserInterfaceState.xcuserstate
+OfficeEMS.xcodeproj/xcuserdata/*
+OfficeEMS.xcodeproj/project.xcworkspace/xcuserdata/*
+*.xccheckout
+

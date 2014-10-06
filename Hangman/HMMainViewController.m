@@ -7,6 +7,7 @@
 //
 
 #import "HMMainViewController.h"
+#import "HMStaticData.h"
 
 const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 CGFloat TextFieldContentViewOriginHeight;
@@ -21,6 +22,68 @@ CGFloat TextFieldContentViewOriginHeight;
     [super viewDidLoad];
     
     TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
+    
+    HMStaticData *staticData = [HMStaticData instance];
+    self.numberOfWordsToGuessLabel.text = [NSString stringWithFormat:@"%ld", (long)staticData.numberOfWordsToGuess];
+    
+    [self giveMeAWordMethod];
+}
+
+- (void)giveMeAWordMethod
+{
+    HMStaticData *staticData = [HMStaticData instance];
+    NSURL *url = [NSURL URLWithString:staticData.urlString];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          staticData.userId, @"userId",
+                          staticData.GiveMeAWordAction, @"action",
+                          staticData.secret, @"secret", nil];
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPBody:postData];
+    [req setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [req setHTTPMethod:@"POST"];
+    
+    [self.activity startAnimating];
+    [NSURLConnection sendAsynchronousRequest:req
+                                       queue:[[NSOperationQueue alloc] init]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               [self performSelectorOnMainThread:@selector(postGiveMeAWord) withObject:nil waitUntilDone:YES];
+                               if (connectionError)
+                               {
+                                   NSLog(@"Httperror: %@%ld", connectionError.localizedDescription, (long)connectionError.code);
+                               }
+                               else
+                               {
+                                   NSError *error;
+                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   NSLog(@"%@", json);
+                                   [self performSelectorOnMainThread:@selector(postGiveMeAWordSuccess:) withObject:json waitUntilDone:YES];
+                               }
+                           }];
+}
+
+- (void)postGiveMeAWord
+{
+    [self.activity stopAnimating];
+}
+
+- (void)postGiveMeAWordSuccess:(NSDictionary *)data
+{
+    if (data != nil)
+    {
+        NSDictionary *jsonData = [data objectForKey:@"data"];
+        if (jsonData != nil)
+        {
+            NSInteger tried = [[jsonData objectForKey:@"numberOfWordsTried"] integerValue];
+            NSInteger guessed = [[jsonData objectForKey:@"numberOfGuessAllowedForThisWord"] integerValue];
+            
+            self.numberOfWordsTriedLabel.text = [NSString stringWithFormat:@"%ld", (long)tried];
+            self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
+        }
+        self.wordLabel.text = [data objectForKey:@"word"];
+    }
 }
 
 - (void)animateTextField:(UITextField *)textField up:(BOOL)up

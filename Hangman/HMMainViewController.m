@@ -8,9 +8,12 @@
 
 #import "HMMainViewController.h"
 #import "HMStaticData.h"
+#import "UIView+Toast.h"
 
-const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
+CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 CGFloat TextFieldContentViewOriginHeight;
+NSString *correctMsg = @"Great!";
+NSString *failMsg = @"Fail!";
 
 @interface HMMainViewController ()
 
@@ -29,6 +32,7 @@ CGFloat TextFieldContentViewOriginHeight;
     [self giveMeAWordMethod];
 }
 
+#pragma mark
 - (void)giveMeAWordMethod
 {
     HMStaticData *staticData = [HMStaticData instance];
@@ -58,7 +62,7 @@ CGFloat TextFieldContentViewOriginHeight;
                                {
                                    NSError *error;
                                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                   NSLog(@"%@", json);
+//                                   NSLog(@"%@", json);
                                    [self performSelectorOnMainThread:@selector(postGiveMeAWordSuccess:) withObject:json waitUntilDone:YES];
                                }
                            }];
@@ -83,6 +87,90 @@ CGFloat TextFieldContentViewOriginHeight;
             self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
         }
         self.wordLabel.text = [data objectForKey:@"word"];
+    }
+}
+
+#pragma mark
+- (void)makeAGuessMethod
+{
+    HMStaticData *staticData = [HMStaticData instance];
+    NSURL *url = [NSURL URLWithString:staticData.urlString];
+    NSString *guessChar = self.guessTextField.text;
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          staticData.userId, @"userId",
+                          staticData.MakeAGuessAction, @"action",
+                          staticData.secret, @"secret",
+                          guessChar, @"guess", nil];
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPBody:postData];
+    [req setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [req setHTTPMethod:@"POST"];
+    
+    [self.activity startAnimating];
+    [NSURLConnection sendAsynchronousRequest:req
+                                       queue:[[NSOperationQueue alloc] init]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               [self performSelectorOnMainThread:@selector(postMakeAGuess) withObject:nil waitUntilDone:YES];
+                               if (connectionError)
+                               {
+                                   NSLog(@"Httperror: %@%ld", connectionError.localizedDescription, (long)connectionError.code);
+                               }
+                               else
+                               {
+                                   NSError *error;
+                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   NSLog(@"%@", json);
+                                   [self performSelectorOnMainThread:@selector(postMakeAGuessSuccess:) withObject:json waitUntilDone:YES];
+                               }
+                           }];
+}
+
+- (void)postMakeAGuess
+{
+    [self.activity stopAnimating];
+}
+
+- (void)postMakeAGuessSuccess:(NSDictionary *)data
+{
+    if (data != nil)
+    {
+        NSDictionary *jsonData = [data objectForKey:@"data"];
+        if (jsonData != nil)
+        {
+            NSInteger guessed = [[jsonData objectForKey:@"numberOfGuessAllowedForThisWord"] integerValue];
+            self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
+        }
+        NSString *word = [data objectForKey:@"word"];
+        if (word == nil)
+        {
+            NSString *message = [data objectForKey:@"message"];
+            NSDictionary *toastInfo = [[NSDictionary alloc]
+                                       initWithObjectsAndKeys:
+                                       message, @"message",
+                                       @"3.0", @"duration",
+                                       @"center", @"position",
+                                       nil, @"title", nil];
+            [self toastView:toastInfo];
+            
+            self.statusLabel.text = failMsg;
+            self.skipWordButton.hidden = YES;
+            self.nextWordButton.hidden = NO;
+        }
+        else
+        {
+            NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"*"];
+            NSRange range = [word rangeOfCharacterFromSet:cs];
+            if (range.location == NSNotFound)
+            {
+                self.statusLabel.text = correctMsg;
+                self.skipWordButton.hidden = YES;
+                self.nextWordButton.hidden = NO;
+            }
+            self.wordLabel.text = word;
+        }
     }
 }
 
@@ -111,6 +199,19 @@ CGFloat TextFieldContentViewOriginHeight;
     [self animateTextField:nil up:NO];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.guessTextField resignFirstResponder];
+    
+    if (!(self.guessTextField.text == nil || [self.guessTextField.text isEqualToString:@""]
+        || [[self.guessTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""]))
+    {
+        [self makeAGuessMethod];
+    }
+    
+    return YES;
+}
+
 - (IBAction)backgroundTouchUpInside:(id)sender
 {
     [self.guessTextField resignFirstResponder];
@@ -120,6 +221,14 @@ CGFloat TextFieldContentViewOriginHeight;
 {
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return (newLength > 1) ? NO : YES;
+}
+
+-(void)toastView:(NSDictionary *)toastInfo
+{
+    [self.view makeToast:[toastInfo objectForKey:@"message"]
+                duration:[[toastInfo objectForKey:@"duration"] floatValue]
+                position:[toastInfo objectForKey:@"position"]
+                   title:[toastInfo objectForKey:@"title"]];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,9 +9,12 @@
             <connections>
                 <outlet property="activity" destination="bko-O9-A8z" id="POU-Re-Je3"/>
                 <outlet property="guessTextField" destination="RNN-ox-SVf" id="9vB-Rf-Nho"/>
+                <outlet property="nextWordButton" destination="mpt-MG-MxB" id="HYd-Cj-yhU"/>
                 <outlet property="numberOfGuessAllowedForEachWordLabel" destination="RMh-cO-RVx" id="sYh-SR-e8N"/>
                 <outlet property="numberOfWordsToGuessLabel" destination="pAh-kZ-4he" id="UHk-4Z-J10"/>
                 <outlet property="numberOfWordsTriedLabel" destination="roF-Q3-QdA" id="IXW-V1-SkU"/>
+                <outlet property="skipWordButton" destination="nK2-vU-KxF" id="cXZ-yO-TGQ"/>
+                <outlet property="statusLabel" destination="BLl-zy-APG" id="hVh-uw-zxi"/>
                 <outlet property="textFieldContentView" destination="0Yt-00-4rJ" id="0TH-0t-fzk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wordLabel" destination="UBv-bp-jxs" id="QlQ-uY-Snc"/>
@@ -31,21 +34,21 @@
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="roF-Q3-QdA">
-                    <rect key="frame" x="116" y="32" width="42" height="21"/>
+                    <rect key="frame" x="109" y="32" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O6F-WH-V5P">
-                    <rect key="frame" x="158" y="32" width="7" height="21"/>
+                    <rect key="frame" x="151" y="32" width="7" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pAh-kZ-4he">
-                    <rect key="frame" x="164" y="32" width="42" height="21"/>
+                    <rect key="frame" x="157" y="32" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -63,6 +66,13 @@
                     <rect key="frame" x="8" y="82" width="304" height="21"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BLl-zy-APG">
+                    <rect key="frame" x="217" y="140" width="82" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -117,7 +127,7 @@
             <connections>
                 <action selector="backgroundTouchUpInside:" destination="-1" eventType="touchUpInside" id="uWX-UJ-Iz3"/>
             </connections>
-            <point key="canvasLocation" x="158" y="198"/>
+            <point key="canvasLocation" x="82" y="198"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

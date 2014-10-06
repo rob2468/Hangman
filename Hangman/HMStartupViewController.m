@@ -80,6 +80,7 @@
 
 - (void)postInitiateGameSuccess:(NSDictionary *)data
 {
+    [self.delegate switchToMainFromStartup];
     if (data != nil)
     {
         NSString *message = [data objectForKey:@"message"];
@@ -91,8 +92,6 @@
                                    nil, @"title", nil];
         [self.delegate startupToastView:toastInfo];
     }
-    
-    [self.delegate switchToMainFromStartup];
 }
 
 

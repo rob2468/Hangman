@@ -61,6 +61,9 @@
                     <state key="normal" title="Skip Word">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="skipWordButtonTouchUpInsider:" destination="-1" eventType="touchUpInside" id="e53-kM-UWH"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---------" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UBv-bp-jxs">
                     <rect key="frame" x="8" y="82" width="304" height="21"/>
@@ -98,6 +101,9 @@
                             <state key="normal" title="Next Word">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="nextWordButtonTouchUpInsider:" destination="-1" eventType="touchUpInside" id="qMh-EX-nC3"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bEr-0a-q9q">
                             <rect key="frame" x="110" y="36" width="100" height="1"/>

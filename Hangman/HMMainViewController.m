@@ -188,6 +188,25 @@ NSString *failMsg = @"Fail!";
     [UIView commitAnimations];
 }
 
+#pragma mark
+- (IBAction)skipWordButtonTouchUpInsider:(UIButton *)sender
+{
+    self.wordLabel.text = @"---------";
+    self.statusLabel.text = @"";
+    self.numberOfGuessAllowedForEachWordLabel.text = @"-";
+    [self giveMeAWordMethod];
+}
+
+- (IBAction)nextWordButtonTouchUpInsider:(UIButton *)sender
+{
+    self.wordLabel.text = @"---------";
+    self.statusLabel.text = @"";
+    self.numberOfGuessAllowedForEachWordLabel.text = @"-";
+    self.skipWordButton.hidden = NO;
+    self.nextWordButton.hidden = YES;
+    [self giveMeAWordMethod];
+}
+
 #pragma mark Text Field Delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {

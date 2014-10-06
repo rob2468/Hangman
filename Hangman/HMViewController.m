@@ -7,6 +7,9 @@
 //
 
 #import "HMViewController.h"
+#import "HMStartupViewController.h"
+#import "HMMainViewController.h"
+#import "HMScoreViewController.h"
 
 @interface HMViewController ()
 
@@ -14,9 +17,15 @@
 
 @implementation HMViewController
 
+@synthesize startupViewController;
+@synthesize mainViewController;
+@synthesize scoreViewController;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    startupViewController = [[HMStartupViewController alloc] initWithNibName:@"HMStartupViewController" bundle:nil];
+    [self.view addSubview:startupViewController.view];
 }
 
 - (void)didReceiveMemoryWarning {

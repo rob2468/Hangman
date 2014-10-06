@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class HMStartupViewController;
+@class HMMainViewController;
+@class HMScoreViewController;
+
 @interface HMViewController : UIViewController
 
+@property (strong, nonatomic) HMStartupViewController *startupViewController;
+@property (strong, nonatomic) HMMainViewController *mainViewController;
+@property (strong, nonatomic) HMScoreViewController *scoreViewController;
 
 @end
 

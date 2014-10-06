@@ -14,6 +14,12 @@
 		850E844319E19CAA00F4CBFF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850E844119E19CAA00F4CBFF /* LaunchScreen.xib */; };
 		850E844F19E19CAA00F4CBFF /* HangmanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E844E19E19CAA00F4CBFF /* HangmanTests.m */; };
 		850E845919E19D7200F4CBFF /* HMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850E845819E19D7200F4CBFF /* HMViewController.xib */; };
+		850E845D19E2205300F4CBFF /* HMStartupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E845B19E2205300F4CBFF /* HMStartupViewController.m */; };
+		850E845E19E2205300F4CBFF /* HMStartupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850E845C19E2205300F4CBFF /* HMStartupViewController.xib */; };
+		850E846219E2230400F4CBFF /* HMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E846019E2230400F4CBFF /* HMMainViewController.m */; };
+		850E846319E2230400F4CBFF /* HMMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850E846119E2230400F4CBFF /* HMMainViewController.xib */; };
+		850E846719E2231300F4CBFF /* HMScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E846519E2231300F4CBFF /* HMScoreViewController.m */; };
+		850E846819E2231300F4CBFF /* HMScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850E846619E2231300F4CBFF /* HMScoreViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,15 @@
 		850E844D19E19CAA00F4CBFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		850E844E19E19CAA00F4CBFF /* HangmanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HangmanTests.m; sourceTree = "<group>"; };
 		850E845819E19D7200F4CBFF /* HMViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMViewController.xib; sourceTree = "<group>"; };
+		850E845A19E2205300F4CBFF /* HMStartupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMStartupViewController.h; sourceTree = "<group>"; };
+		850E845B19E2205300F4CBFF /* HMStartupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMStartupViewController.m; sourceTree = "<group>"; };
+		850E845C19E2205300F4CBFF /* HMStartupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMStartupViewController.xib; sourceTree = "<group>"; };
+		850E845F19E2230400F4CBFF /* HMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMMainViewController.h; sourceTree = "<group>"; };
+		850E846019E2230400F4CBFF /* HMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMMainViewController.m; sourceTree = "<group>"; };
+		850E846119E2230400F4CBFF /* HMMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMMainViewController.xib; sourceTree = "<group>"; };
+		850E846419E2231300F4CBFF /* HMScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMScoreViewController.h; sourceTree = "<group>"; };
+		850E846519E2231300F4CBFF /* HMScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMScoreViewController.m; sourceTree = "<group>"; };
+		850E846619E2231300F4CBFF /* HMScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMScoreViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +101,9 @@
 				850E843919E19CAA00F4CBFF /* HMViewController.h */,
 				850E843A19E19CAA00F4CBFF /* HMViewController.m */,
 				850E845819E19D7200F4CBFF /* HMViewController.xib */,
+				850E846919E225BB00F4CBFF /* Startup */,
+				850E846A19E225C500F4CBFF /* Main */,
+				850E846B19E225D200F4CBFF /* Score */,
 				850E843F19E19CAA00F4CBFF /* Images.xcassets */,
 				850E844119E19CAA00F4CBFF /* LaunchScreen.xib */,
 				850E843219E19CAA00F4CBFF /* Supporting Files */,
@@ -117,6 +135,36 @@
 				850E844D19E19CAA00F4CBFF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		850E846919E225BB00F4CBFF /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				850E845A19E2205300F4CBFF /* HMStartupViewController.h */,
+				850E845B19E2205300F4CBFF /* HMStartupViewController.m */,
+				850E845C19E2205300F4CBFF /* HMStartupViewController.xib */,
+			);
+			name = Startup;
+			sourceTree = "<group>";
+		};
+		850E846A19E225C500F4CBFF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				850E845F19E2230400F4CBFF /* HMMainViewController.h */,
+				850E846019E2230400F4CBFF /* HMMainViewController.m */,
+				850E846119E2230400F4CBFF /* HMMainViewController.xib */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		850E846B19E225D200F4CBFF /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				850E846419E2231300F4CBFF /* HMScoreViewController.h */,
+				850E846519E2231300F4CBFF /* HMScoreViewController.m */,
+				850E846619E2231300F4CBFF /* HMScoreViewController.xib */,
+			);
+			name = Score;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +250,10 @@
 			files = (
 				850E844319E19CAA00F4CBFF /* LaunchScreen.xib in Resources */,
 				850E844019E19CAA00F4CBFF /* Images.xcassets in Resources */,
+				850E846819E2231300F4CBFF /* HMScoreViewController.xib in Resources */,
 				850E845919E19D7200F4CBFF /* HMViewController.xib in Resources */,
+				850E846319E2230400F4CBFF /* HMMainViewController.xib in Resources */,
+				850E845E19E2205300F4CBFF /* HMStartupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,9 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				850E846719E2231300F4CBFF /* HMScoreViewController.m in Sources */,
 				850E843B19E19CAA00F4CBFF /* HMViewController.m in Sources */,
 				850E843819E19CAA00F4CBFF /* AppDelegate.m in Sources */,
 				850E843519E19CAA00F4CBFF /* main.m in Sources */,
+				850E845D19E2205300F4CBFF /* HMStartupViewController.m in Sources */,
+				850E846219E2230400F4CBFF /* HMMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

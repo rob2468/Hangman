@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "HMStartupViewController.h"
+#import "HMMainViewController.h"
 
 @class HMMainViewController;
 @class HMScoreViewController;
 
 @interface HMViewController : UIViewController
-<HMStartupViewContollerDelegate>
+<HMStartupViewContollerDelegate, HMMainViewControllerDelegate>
 
 @property (strong, nonatomic) HMStartupViewController *startupViewController;
 @property (strong, nonatomic) HMMainViewController *mainViewController;

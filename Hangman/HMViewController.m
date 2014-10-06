@@ -39,10 +39,27 @@
     
     mainViewController = [[HMMainViewController alloc] initWithNibName:@"HMMainViewController" bundle:nil];
     mainViewController.view.frame = self.view.frame;
+    mainViewController.delegate = self;
     [self.view addSubview:mainViewController.view];
 }
 
 - (void)startupToastView:(NSDictionary *)toastInfo
+{
+    [self toastView:toastInfo];
+}
+
+#pragma mark Main Delegate
+- (void)switchToScoreFromMain
+{
+    [mainViewController.view removeFromSuperview];
+    mainViewController = nil;
+    
+    scoreViewController = [[HMScoreViewController alloc] initWithNibName:@"HMScoreViewController" bundle:nil];
+    scoreViewController.view.frame = self.view.frame;
+    [self.view addSubview:scoreViewController.view];
+}
+
+-(void)mainToastView:(NSDictionary *)toastInfo
 {
     [self toastView:toastInfo];
 }

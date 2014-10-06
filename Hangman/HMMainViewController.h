@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HMMainViewControllerDelegate;
+
 @interface HMMainViewController : UIViewController
 <UITextFieldDelegate>
+
+@property (nonatomic, assign) id<HMMainViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *numberOfWordsTriedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfWordsToGuessLabel;
@@ -25,5 +29,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *guessTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextWordButton;
 
+@end
+
+@protocol HMMainViewControllerDelegate <NSObject>
+
+- (void)switchToScoreFromMain;
+
+- (void)mainToastView:(NSDictionary *)toastInfo;
 
 @end

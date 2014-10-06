@@ -77,16 +77,32 @@ NSString *failMsg = @"Fail!";
 {
     if (data != nil)
     {
-        NSDictionary *jsonData = [data objectForKey:@"data"];
-        if (jsonData != nil)
+        NSString *word = [data objectForKey:@"word"];
+        if (word == nil)
         {
-            NSInteger tried = [[jsonData objectForKey:@"numberOfWordsTried"] integerValue];
-            NSInteger guessed = [[jsonData objectForKey:@"numberOfGuessAllowedForThisWord"] integerValue];
-            
-            self.numberOfWordsTriedLabel.text = [NSString stringWithFormat:@"%ld", (long)tried];
-            self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
+            NSString *message = [data objectForKey:@"message"];
+            NSDictionary *toastInfo = [[NSDictionary alloc]
+                                       initWithObjectsAndKeys:
+                                       message, @"message",
+                                       @"3.0", @"duration",
+                                       @"center", @"position",
+                                       nil, @"title", nil];
+            [self.delegate mainToastView:toastInfo];
+            [self.delegate switchToScoreFromMain];
         }
-        self.wordLabel.text = [data objectForKey:@"word"];
+        else
+        {
+            NSDictionary *jsonData = [data objectForKey:@"data"];
+            if (jsonData != nil)
+            {
+                NSInteger tried = [[jsonData objectForKey:@"numberOfWordsTried"] integerValue];
+                NSInteger guessed = [[jsonData objectForKey:@"numberOfGuessAllowedForThisWord"] integerValue];
+                
+                self.numberOfWordsTriedLabel.text = [NSString stringWithFormat:@"%ld", (long)tried];
+                self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
+            }
+            self.wordLabel.text = word;
+        }
     }
 }
 

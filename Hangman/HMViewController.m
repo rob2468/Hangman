@@ -25,7 +25,18 @@
     [super viewDidLoad];
     
     startupViewController = [[HMStartupViewController alloc] initWithNibName:@"HMStartupViewController" bundle:nil];
+    startupViewController.delegate = self;
     [self.view addSubview:startupViewController.view];
+}
+
+#pragma mark Startup Delegate
+- (void)switchToMainFromStartup
+{
+    [startupViewController.view removeFromSuperview];
+    self.startupViewController = nil;
+    
+    mainViewController = [[HMMainViewController alloc] initWithNibName:@"HMMainViewController" bundle:nil];
+    [self.view addSubview:mainViewController.view];
 }
 
 - (void)didReceiveMemoryWarning {

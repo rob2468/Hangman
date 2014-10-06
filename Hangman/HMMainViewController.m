@@ -8,6 +8,9 @@
 
 #import "HMMainViewController.h"
 
+const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
+CGFloat TextFieldContentViewOriginHeight;
+
 @interface HMMainViewController ()
 
 @end
@@ -16,7 +19,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
+}
+
+- (void)animateTextField:(UITextField *)textField up:(BOOL)up
+{
+    float movementDistance = PORTRAIT_KEYBOARD_HEIGHT+self.textFieldContentView.frame.size.height-TextFieldContentViewOriginHeight;
+    const float movementDuration = 0.3f;
+    
+    float movement = (up? -movementDistance: movementDistance);
+    
+    [UIView beginAnimations:@"anim" context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:movementDuration];
+    self.textFieldContentView.frame = CGRectOffset(self.textFieldContentView.frame, 0, movement);
+    [UIView commitAnimations];
+}
+
+#pragma mark Text Field Delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self animateTextField:nil up:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField:nil up:NO];
+}
+
+- (IBAction)backgroundTouchUpInside:(id)sender
+{
+    [self.guessTextField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {

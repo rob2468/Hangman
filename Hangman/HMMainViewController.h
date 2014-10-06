@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface HMMainViewController : UIViewController
+<UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *textFieldContentView;
+@property (weak, nonatomic) IBOutlet UITextField *guessTextField;
 
 @end

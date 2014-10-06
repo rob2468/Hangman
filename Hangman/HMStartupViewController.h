@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HMStartupViewContollerDelegate;
+
 @interface HMStartupViewController : UIViewController
+
+@property (nonatomic, assign) id<HMStartupViewContollerDelegate> delegate;
+
+@end
+
+@protocol HMStartupViewContollerDelegate <NSObject>
+
+- (void)switchToMainFromStartup;
 
 @end

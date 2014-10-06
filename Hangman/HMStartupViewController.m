@@ -35,9 +35,11 @@
     [req setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
     [req setHTTPMethod:@"POST"];
     
+    [self.activity startAnimating];
     [NSURLConnection sendAsynchronousRequest:req
                                        queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               [self performSelectorOnMainThread:@selector(postInitiateGame) withObject:nil waitUntilDone:YES];
                                if (connectionError)
                                {
                                    NSLog(@"Httperror: %@%ld", connectionError.localizedDescription, (long)connectionError.code);
@@ -69,6 +71,11 @@
                                    [self performSelectorOnMainThread:@selector(postInitiateGameSuccess:) withObject:json waitUntilDone:YES];
                                }
                            }];
+}
+
+- (void)postInitiateGame
+{
+    [self.activity stopAnimating];
 }
 
 - (void)postInitiateGameSuccess:(NSDictionary *)data

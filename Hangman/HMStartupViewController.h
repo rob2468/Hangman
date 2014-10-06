@@ -13,6 +13,7 @@
 @interface HMStartupViewController : UIViewController
 
 @property (nonatomic, assign) id<HMStartupViewContollerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @end
 

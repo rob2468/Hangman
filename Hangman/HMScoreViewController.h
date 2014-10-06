@@ -10,4 +10,11 @@
 
 @interface HMScoreViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+
+@property (weak, nonatomic) IBOutlet UILabel *wordsTriedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *correctWordsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *wrongGuessesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalScoreLabel;
+
 @end

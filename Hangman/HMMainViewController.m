@@ -223,6 +223,11 @@ NSString *failMsg = @"Fail!";
     [self giveMeAWordMethod];
 }
 
+- (IBAction)newGameButtonTouchUpInsider:(UIButton *)sender
+{
+    
+}
+
 #pragma mark Text Field Delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {

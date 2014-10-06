@@ -11,7 +11,7 @@
 @protocol HMMainViewControllerDelegate;
 
 @interface HMMainViewController : UIViewController
-<UITextFieldDelegate>
+<UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, assign) id<HMMainViewControllerDelegate> delegate;
 
@@ -34,6 +34,7 @@
 @protocol HMMainViewControllerDelegate <NSObject>
 
 - (void)switchToScoreFromMain;
+- (void)switchToStartupFromMain;
 
 - (void)mainToastView:(NSDictionary *)toastInfo;
 

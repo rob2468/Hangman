@@ -223,9 +223,23 @@ NSString *failMsg = @"Fail!";
     [self giveMeAWordMethod];
 }
 
-- (IBAction)newGameButtonTouchUpInsider:(UIButton *)sender
+- (IBAction)endGameButtonTouchUpInsider:(UIButton *)sender
 {
-    
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:nil
+                              message:@"You will lose your game record. End game anyway?"
+                              delegate:self
+                              cancelButtonTitle:@"No"
+                              otherButtonTitles:@"Yes", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self.delegate switchToStartupFromMain];
+    }
 }
 
 #pragma mark Text Field Delegate

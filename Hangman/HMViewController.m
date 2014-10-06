@@ -58,6 +58,17 @@
     [self.view addSubview:scoreViewController.view];
 }
 
+- (void)switchToStartupFromMain
+{
+    [mainViewController.view removeFromSuperview];
+    mainViewController = nil;
+    
+    startupViewController = [[HMStartupViewController alloc] initWithNibName:@"HMStartupViewController" bundle:nil];
+    startupViewController.view.frame = self.view.frame;
+    startupViewController.delegate = self;
+    [self.view addSubview:startupViewController.view];
+}
+
 -(void)mainToastView:(NSDictionary *)toastInfo
 {
     [self toastView:toastInfo];

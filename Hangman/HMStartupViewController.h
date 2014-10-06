@@ -20,4 +20,6 @@
 
 - (void)switchToMainFromStartup;
 
+- (void)startupToastView:(NSDictionary *)toastInfo;
+
 @end

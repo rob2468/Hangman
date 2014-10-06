@@ -7,6 +7,8 @@
 //
 
 #import "HMStartupViewController.h"
+#import "HMStaticData.h"
+#import "UIView+Toast.h"
 
 @interface HMStartupViewController ()
 
@@ -21,8 +23,71 @@
 
 - (IBAction)startGameButtonTouchUpInside:(UIButton *)sender
 {
+    HMStaticData *staticData = [HMStaticData instance];
+    NSURL *url = [NSURL URLWithString:staticData.urlString];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:staticData.userId, @"userId",
+                          staticData.InitiateGameAction, @"action", nil];
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPBody:postData];
+    [req setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [req setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:req
+                                       queue:[[NSOperationQueue alloc] init]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               if (connectionError)
+                               {
+                                   NSLog(@"Httperror: %@%ld", connectionError.localizedDescription, (long)connectionError.code);
+                               }
+                               else
+                               {
+                                   HMStaticData *staticData = [HMStaticData instance];
+                                   NSError *error;
+                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   // set data
+                                   if (json != nil)
+                                   {
+                                       NSDictionary *jsonData = [json objectForKey:@"data"];
+                                       if (jsonData != nil)
+                                       {
+                                           NSString *numberOfWordsToGuess = [jsonData objectForKey:@"numberOfWordsToGuess"];
+                                           NSString *numberOfGuessAllowedForEachWord = [jsonData objectForKey:@"numberOfGuessAllowedForEachWord"];
+                                           if (numberOfWordsToGuess != nil && numberOfGuessAllowedForEachWord != nil)
+                                           {
+                                               staticData.numberOfWordsToGuess = [numberOfWordsToGuess integerValue];
+                                               staticData.numberOfGuessAllowedForEachWord = [numberOfGuessAllowedForEachWord integerValue];
+                                           }
+                                       }
+                                       NSString *secret = [json objectForKey:@"secret"];
+                                       staticData.secret = secret;
+                                   }
+                                   
+                                   // set view
+                                   [self performSelectorOnMainThread:@selector(postInitiateGameSuccess:) withObject:json waitUntilDone:YES];
+                               }
+                           }];
+}
+
+- (void)postInitiateGameSuccess:(NSDictionary *)data
+{
+    if (data != nil)
+    {
+        NSString *message = [data objectForKey:@"message"];
+        NSDictionary *toastInfo = [[NSDictionary alloc]
+                                   initWithObjectsAndKeys:
+                                   message, @"message",
+                                   @"3.0", @"duration",
+                                   @"center", @"position",
+                                   nil, @"title", nil];
+        [self.delegate startupToastView:toastInfo];
+    }
+    
     [self.delegate switchToMainFromStartup];
 }
+
 
 
 - (void)didReceiveMemoryWarning {

@@ -20,6 +20,9 @@
 		850E846319E2230400F4CBFF /* HMMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850E846119E2230400F4CBFF /* HMMainViewController.xib */; };
 		850E846719E2231300F4CBFF /* HMScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E846519E2231300F4CBFF /* HMScoreViewController.m */; };
 		850E846819E2231300F4CBFF /* HMScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850E846619E2231300F4CBFF /* HMScoreViewController.xib */; };
+		850E846E19E2928900F4CBFF /* HMStaticData.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E846D19E2928900F4CBFF /* HMStaticData.m */; };
+		850E847419E29E1300F4CBFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850E847319E29E1300F4CBFF /* QuartzCore.framework */; };
+		850E847819E29F9100F4CBFF /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E847719E29F9100F4CBFF /* UIView+Toast.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,11 @@
 		850E846419E2231300F4CBFF /* HMScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMScoreViewController.h; sourceTree = "<group>"; };
 		850E846519E2231300F4CBFF /* HMScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMScoreViewController.m; sourceTree = "<group>"; };
 		850E846619E2231300F4CBFF /* HMScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HMScoreViewController.xib; sourceTree = "<group>"; };
+		850E846C19E2928900F4CBFF /* HMStaticData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMStaticData.h; sourceTree = "<group>"; };
+		850E846D19E2928900F4CBFF /* HMStaticData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMStaticData.m; sourceTree = "<group>"; };
+		850E847319E29E1300F4CBFF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		850E847619E29F9100F4CBFF /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		850E847719E29F9100F4CBFF /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				850E847419E29E1300F4CBFF /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,7 @@
 		850E842619E19CAA00F4CBFF = {
 			isa = PBXGroup;
 			children = (
+				850E847319E29E1300F4CBFF /* QuartzCore.framework */,
 				850E843119E19CAA00F4CBFF /* Hangman */,
 				850E844B19E19CAA00F4CBFF /* HangmanTests */,
 				850E843019E19CAA00F4CBFF /* Products */,
@@ -101,6 +111,9 @@
 				850E843919E19CAA00F4CBFF /* HMViewController.h */,
 				850E843A19E19CAA00F4CBFF /* HMViewController.m */,
 				850E845819E19D7200F4CBFF /* HMViewController.xib */,
+				850E846C19E2928900F4CBFF /* HMStaticData.h */,
+				850E846D19E2928900F4CBFF /* HMStaticData.m */,
+				850E847519E29F9100F4CBFF /* Toast */,
 				850E846919E225BB00F4CBFF /* Startup */,
 				850E846A19E225C500F4CBFF /* Main */,
 				850E846B19E225D200F4CBFF /* Score */,
@@ -165,6 +178,15 @@
 				850E846619E2231300F4CBFF /* HMScoreViewController.xib */,
 			);
 			name = Score;
+			sourceTree = "<group>";
+		};
+		850E847519E29F9100F4CBFF /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				850E847619E29F9100F4CBFF /* UIView+Toast.h */,
+				850E847719E29F9100F4CBFF /* UIView+Toast.m */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				850E847819E29F9100F4CBFF /* UIView+Toast.m in Sources */,
+				850E846E19E2928900F4CBFF /* HMStaticData.m in Sources */,
 				850E846719E2231300F4CBFF /* HMScoreViewController.m in Sources */,
 				850E843B19E19CAA00F4CBFF /* HMViewController.m in Sources */,
 				850E843819E19CAA00F4CBFF /* AppDelegate.m in Sources */,

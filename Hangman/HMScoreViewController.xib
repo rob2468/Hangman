@@ -90,6 +90,9 @@
                     <state key="normal" title="Submit">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="submitButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="jqt-4p-bmC"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VBw-m2-kb4">
                     <rect key="frame" x="209" y="280" width="82" height="30"/>
@@ -98,6 +101,9 @@
                     <state key="normal" title="Ignore">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="ignoreButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="SgE-F9-iW9"/>
+                    </connections>
                 </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="lRU-EG-0LC">
                     <rect key="frame" x="271" y="84" width="20" height="20"/>

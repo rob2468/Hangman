@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HMScoreViewControllerDelegate;
+
 @interface HMScoreViewController : UIViewController
+
+@property (nonatomic, assign) id<HMScoreViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
@@ -16,5 +20,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *correctWordsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wrongGuessesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalScoreLabel;
+
+@end
+
+@protocol HMScoreViewControllerDelegate <NSObject>
+
+- (void)switchToStartupFromScore;
 
 @end

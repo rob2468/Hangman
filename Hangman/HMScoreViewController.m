@@ -22,6 +22,7 @@
     [self getTestResultsMethod];
 }
 
+#pragma mark
 - (void)getTestResultsMethod
 {
     HMStaticData *staticData = [HMStaticData instance];
@@ -90,6 +91,58 @@
             self.totalScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)totalScore];
         }
     }
+}
+
+#pragma mark
+- (IBAction)submitButtonTouchUpInside:(UIButton *)sender
+{
+    HMStaticData *staticData = [HMStaticData instance];
+    NSURL *url = [NSURL URLWithString:staticData.urlString];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          staticData.userId, @"userId",
+                          staticData.SubmitTestResultsAction, @"action",
+                          staticData.secret, @"secret", nil];
+    
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&error];
+    
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
+    [req setHTTPBody:postData];
+    [req setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [req setHTTPMethod:@"POST"];
+    
+    [self.activity startAnimating];
+    [NSURLConnection sendAsynchronousRequest:req
+                                       queue:[[NSOperationQueue alloc] init]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               [self performSelectorOnMainThread:@selector(postSubmit) withObject:nil waitUntilDone:YES];
+                               if (connectionError)
+                               {
+                                   NSLog(@"Httperror: %@%ld", connectionError.localizedDescription, (long)connectionError.code);
+                               }
+                               else
+                               {
+                                   NSError *error;
+                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   NSLog(@"%@", json);
+                                   [self performSelectorOnMainThread:@selector(postSubmitSuccess:) withObject:json waitUntilDone:YES];
+                               }
+                           }];
+}
+
+- (void)postSubmit
+{
+    [self.activity stopAnimating];
+}
+
+- (void)postSubmitSuccess:(NSDictionary *)data
+{
+    [self.delegate switchToStartupFromScore];
+}
+
+- (IBAction)ignoreButtonTouchUpInside:(UIButton *)sender
+{
+    [self.delegate switchToStartupFromScore];
 }
 
 -(void)toastView:(NSDictionary *)toastInfo

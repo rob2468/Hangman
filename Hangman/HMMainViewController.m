@@ -15,10 +15,8 @@ CGFloat TextFieldContentViewOriginHeight;
 NSString *correctMsg = @"Great!";
 NSString *failMsg = @"Fail!";
 
-CGFloat TopCoverHeightOfPrisonerView = 60.0;
-CGFloat BottomCoverHeightOfPrisonerView = 50.0;
-CGFloat PrisonerImageHeight = 350.0;
-
+CGFloat TopCoverHeightOfPrisonerView = 309.0;
+CGFloat BottomGapHeightOfPrisonerView = 34.0;
 
 @interface HMMainViewController ()
 
@@ -33,22 +31,18 @@ CGFloat PrisonerImageHeight = 350.0;
     
     TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
     
-    CGFloat heightOfPrisonerView = TopCoverHeightOfPrisonerView+self.view.frame.size.height+BottomCoverHeightOfPrisonerView;
-    CGFloat topCoverHeightOfGallowsView = heightOfPrisonerView-PrisonerImageHeight;
-    CGFloat heightOfGallowsView = topCoverHeightOfGallowsView+self.view.frame.size.height+BottomCoverHeightOfPrisonerView;
-    
     CGRect frame = self.gallowsView.frame;
-    frame.origin.y = -topCoverHeightOfGallowsView;
-    frame.size.height = heightOfGallowsView;
+    frame.origin.y = -TopCoverHeightOfPrisonerView;
+    frame.size.height = TopCoverHeightOfPrisonerView+self.view.frame.size.height-BottomGapHeightOfPrisonerView;
     self.gallowsView.frame = frame;
     
     frame = self.prisonerImageView.frame;
-    frame.origin.y = 0;
-    frame.size.height = heightOfPrisonerView;
+    frame.origin.y = self.gallowsView.frame.size.height-self.prisonerImageView.frame.size.height;
     self.prisonerImageView.frame = frame;
     
     self.hangAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.gallowsView];
     self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.prisonerImageView]];
+    self.gravityBehavior.gravityDirection = CGVectorMake(0.0, -1.0);
     self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.prisonerImageView]];
     self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
     
@@ -234,7 +228,7 @@ CGFloat PrisonerImageHeight = 350.0;
 {
     [self.hangAnimator removeAllBehaviors];
     CGRect frame = self.prisonerImageView.frame;
-    frame.origin.y = 0;
+    frame.origin.y = self.gallowsView.frame.size.height-self.prisonerImageView.frame.size.height;;
     self.prisonerImageView.frame = frame;
 }
 

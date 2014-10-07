@@ -55,7 +55,7 @@
                                {
                                    NSError *error;
                                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                   NSLog(@"%@", json);
+//                                   NSLog(@"%@", json);
                                    [self performSelectorOnMainThread:@selector(postGetTestResultsSuccess:) withObject:json waitUntilDone:YES];
                                }
                            }];
@@ -126,7 +126,7 @@
                                {
                                    NSError *error;
                                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                   NSLog(@"%@", json);
+//                                   NSLog(@"%@", json);
                                    [self performSelectorOnMainThread:@selector(postSubmitSuccess:) withObject:json waitUntilDone:YES];
                                }
                            }];

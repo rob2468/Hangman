@@ -158,7 +158,7 @@ CGFloat BottomGapHeightOfPrisonerView = 34.0;
                                {
                                    NSError *error;
                                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                   NSLog(@"%@", json);
+//                                   NSLog(@"%@", json);
                                    [self performSelectorOnMainThread:@selector(postMakeAGuessSuccess:) withObject:json waitUntilDone:YES];
                                }
                            }];

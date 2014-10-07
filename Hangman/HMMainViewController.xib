@@ -8,11 +8,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HMMainViewController">
             <connections>
                 <outlet property="activity" destination="bko-O9-A8z" id="POU-Re-Je3"/>
+                <outlet property="gallowsView" destination="RSY-9X-l28" id="UiK-PL-e2b"/>
                 <outlet property="guessTextField" destination="RNN-ox-SVf" id="9vB-Rf-Nho"/>
                 <outlet property="nextWordButton" destination="mpt-MG-MxB" id="HYd-Cj-yhU"/>
                 <outlet property="numberOfGuessAllowedForEachWordLabel" destination="RMh-cO-RVx" id="sYh-SR-e8N"/>
                 <outlet property="numberOfWordsToGuessLabel" destination="pAh-kZ-4he" id="UHk-4Z-J10"/>
                 <outlet property="numberOfWordsTriedLabel" destination="roF-Q3-QdA" id="IXW-V1-SkU"/>
+                <outlet property="prisonerView" destination="hM2-4P-JDg" id="A79-Ta-rLR"/>
                 <outlet property="skipWordButton" destination="nK2-vU-KxF" id="cXZ-yO-TGQ"/>
                 <outlet property="statusLabel" destination="BLl-zy-APG" id="hVh-uw-zxi"/>
                 <outlet property="textFieldContentView" destination="0Yt-00-4rJ" id="0TH-0t-fzk"/>
@@ -25,6 +27,25 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" id="RSY-9X-l28">
+                    <rect key="frame" x="8" y="-328" width="160" height="946"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" id="hM2-4P-JDg">
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="678"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" id="JnS-aA-vCB">
+                                    <rect key="frame" x="0.0" y="328" width="160" height="350"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EMu-nT-Lkg">
                     <rect key="frame" x="8" y="28" width="72" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -82,10 +103,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="XdJ-WB-Ui2">
-                    <rect key="frame" x="8" y="111" width="304" height="252"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <view contentMode="scaleToFill" id="0Yt-00-4rJ">
                     <rect key="frame" x="0.0" y="479" width="320" height="47"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -136,7 +153,7 @@
             <connections>
                 <action selector="backgroundTouchUpInside:" destination="-1" eventType="touchUpInside" id="uWX-UJ-Iz3"/>
             </connections>
-            <point key="canvasLocation" x="82" y="198"/>
+            <point key="canvasLocation" x="84" y="225"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

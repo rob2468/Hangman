@@ -15,6 +15,11 @@ CGFloat TextFieldContentViewOriginHeight;
 NSString *correctMsg = @"Great!";
 NSString *failMsg = @"Fail!";
 
+CGFloat TopCoverHeightOfPrisonerView = 60.0;
+CGFloat BottomCoverHeightOfPrisonerView = 50.0;
+CGFloat PrisonerImageHeight = 350.0;
+
+
 @interface HMMainViewController ()
 
 @end
@@ -25,6 +30,25 @@ NSString *failMsg = @"Fail!";
     [super viewDidLoad];
     
     TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
+    
+    CGFloat heightOfPrisonerView = TopCoverHeightOfPrisonerView+self.view.frame.size.height+BottomCoverHeightOfPrisonerView;
+    CGFloat topCoverHeightOfGallowsView = heightOfPrisonerView-PrisonerImageHeight;
+    CGFloat heightOfGallowsView = topCoverHeightOfGallowsView+self.view.frame.size.height+BottomCoverHeightOfPrisonerView;
+    
+    CGRect frame = self.gallowsView.frame;
+    frame.origin.y = -topCoverHeightOfGallowsView;
+    frame.size.height = heightOfGallowsView;
+    self.gallowsView.frame = frame;
+    
+    frame = self.prisonerView.frame;
+    frame.origin.y = 0;
+    frame.size.height = heightOfPrisonerView;
+    self.prisonerView.frame = frame;
+    
+    self.hangAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.gallowsView];
+    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.prisonerView]];
+    self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.prisonerView]];
+    self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
     
     HMStaticData *staticData = [HMStaticData instance];
     self.numberOfWordsToGuessLabel.text = [NSString stringWithFormat:@"%ld", (long)staticData.numberOfWordsToGuess];
@@ -159,11 +183,13 @@ NSString *failMsg = @"Fail!";
             NSInteger guessed = [[jsonData objectForKey:@"numberOfGuessAllowedForThisWord"] integerValue];
             self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
             
+            // fail to guess this word
             if (guessed == 0)
             {
                 self.statusLabel.text = failMsg;
                 self.skipWordButton.hidden = YES;
                 self.nextWordButton.hidden = NO;
+                [self addFailAnimate];
             }
         }
         NSString *word = [data objectForKey:@"word"];
@@ -196,6 +222,19 @@ NSString *failMsg = @"Fail!";
         }
     }
 }
+- (void)addFailAnimate
+{
+    [self.hangAnimator addBehavior:self.gravityBehavior];
+    [self.hangAnimator addBehavior:self.collisionBehavior];
+}
+
+- (void)removeFailAnimate
+{
+    [self.hangAnimator removeAllBehaviors];
+    CGRect frame = self.prisonerView.frame;
+    frame.origin.y = 0;
+    self.prisonerView.frame = frame;
+}
 
 - (void)animateTextField:(UITextField *)textField up:(BOOL)up
 {
@@ -227,6 +266,7 @@ NSString *failMsg = @"Fail!";
     self.numberOfGuessAllowedForEachWordLabel.text = @"-";
     self.skipWordButton.hidden = NO;
     self.nextWordButton.hidden = YES;
+    [self removeFailAnimate];
     [self giveMeAWordMethod];
 }
 

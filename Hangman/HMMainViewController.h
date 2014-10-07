@@ -29,6 +29,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *guessTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextWordButton;
 
+@property (weak, nonatomic) IBOutlet UIView *gallowsView;
+@property (weak, nonatomic) IBOutlet UIView *prisonerView;
+@property (strong, nonatomic) UIDynamicAnimator *hangAnimator;
+@property (strong, nonatomic) UIGravityBehavior *gravityBehavior;
+@property (strong, nonatomic) UICollisionBehavior *collisionBehavior;
+
 @end
 
 @protocol HMMainViewControllerDelegate <NSObject>

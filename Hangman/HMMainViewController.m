@@ -158,6 +158,13 @@ NSString *failMsg = @"Fail!";
         {
             NSInteger guessed = [[jsonData objectForKey:@"numberOfGuessAllowedForThisWord"] integerValue];
             self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
+            
+            if (guessed == 0)
+            {
+                self.statusLabel.text = failMsg;
+                self.skipWordButton.hidden = YES;
+                self.nextWordButton.hidden = NO;
+            }
         }
         NSString *word = [data objectForKey:@"word"];
         if (word == nil)
@@ -227,7 +234,7 @@ NSString *failMsg = @"Fail!";
 {
     UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:nil
-                              message:@"You will lose your game record. End game anyway?"
+                              message:@"You will lose your game record.\nEnd game anyway?"
                               delegate:self
                               cancelButtonTitle:@"No"
                               otherButtonTitles:@"Yes", nil];

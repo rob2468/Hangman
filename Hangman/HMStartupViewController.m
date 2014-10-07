@@ -50,9 +50,9 @@
                                    HMStaticData *staticData = [HMStaticData instance];
                                    NSError *error;
                                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                   // set data
                                    if (json != nil)
                                    {
+                                       // set data
                                        NSDictionary *jsonData = [json objectForKey:@"data"];
                                        if (jsonData != nil)
                                        {
@@ -66,11 +66,10 @@
                                        }
                                        NSString *secret = [json objectForKey:@"secret"];
                                        staticData.secret = secret;
+                                       // set view
+                                       [self performSelectorOnMainThread:@selector(postInitiateGameSuccess:) withObject:json waitUntilDone:YES];
                                    }
-                                   
-                                   // set view
-                                   [self performSelectorOnMainThread:@selector(postInitiateGameSuccess:) withObject:json waitUntilDone:YES];
-                               }
+                                }
                            }];
 }
 

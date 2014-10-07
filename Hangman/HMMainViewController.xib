@@ -27,7 +27,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="RSY-9X-l28">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" id="RSY-9X-l28">
                     <rect key="frame" x="8" y="-309" width="160" height="843"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>

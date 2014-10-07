@@ -13,6 +13,7 @@
 @interface HMMainViewController : UIViewController
 <UITextFieldDelegate, UIAlertViewDelegate>
 
+@property (nonatomic, assign) CGRect frame;
 @property (nonatomic, assign) id<HMMainViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *numberOfWordsTriedLabel;
@@ -30,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextWordButton;
 
 @property (weak, nonatomic) IBOutlet UIView *gallowsView;
-@property (weak, nonatomic) IBOutlet UIView *prisonerView;
+@property (weak, nonatomic) IBOutlet UIImageView *prisonerImageView;
 @property (strong, nonatomic) UIDynamicAnimator *hangAnimator;
 @property (strong, nonatomic) UIGravityBehavior *gravityBehavior;
 @property (strong, nonatomic) UICollisionBehavior *collisionBehavior;

@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.frame = self.frame;
+    
     [self getTestResultsMethod];
 }
 

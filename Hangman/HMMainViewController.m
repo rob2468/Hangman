@@ -29,6 +29,8 @@ CGFloat PrisonerImageHeight = 350.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.frame = self.frame;
+    
     TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
     
     CGFloat heightOfPrisonerView = TopCoverHeightOfPrisonerView+self.view.frame.size.height+BottomCoverHeightOfPrisonerView;
@@ -40,14 +42,14 @@ CGFloat PrisonerImageHeight = 350.0;
     frame.size.height = heightOfGallowsView;
     self.gallowsView.frame = frame;
     
-    frame = self.prisonerView.frame;
+    frame = self.prisonerImageView.frame;
     frame.origin.y = 0;
     frame.size.height = heightOfPrisonerView;
-    self.prisonerView.frame = frame;
+    self.prisonerImageView.frame = frame;
     
     self.hangAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.gallowsView];
-    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.prisonerView]];
-    self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.prisonerView]];
+    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.prisonerImageView]];
+    self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.prisonerImageView]];
     self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
     
     HMStaticData *staticData = [HMStaticData instance];
@@ -231,9 +233,9 @@ CGFloat PrisonerImageHeight = 350.0;
 - (void)removeFailAnimate
 {
     [self.hangAnimator removeAllBehaviors];
-    CGRect frame = self.prisonerView.frame;
+    CGRect frame = self.prisonerImageView.frame;
     frame.origin.y = 0;
-    self.prisonerView.frame = frame;
+    self.prisonerImageView.frame = frame;
 }
 
 - (void)animateTextField:(UITextField *)textField up:(BOOL)up

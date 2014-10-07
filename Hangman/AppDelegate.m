@@ -21,6 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.hmViewController = [[HMViewController alloc] initWithNibName:@"HMViewController" bundle:nil];
+    self.hmViewController.frame = self.window.frame;
     self.window.rootViewController = self.hmViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];

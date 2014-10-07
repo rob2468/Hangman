@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.frame = self.frame;
 }
 
 - (IBAction)startGameButtonTouchUpInside:(UIButton *)sender

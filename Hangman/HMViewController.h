@@ -14,6 +14,7 @@
 @interface HMViewController : UIViewController
 <HMStartupViewContollerDelegate, HMMainViewControllerDelegate, HMScoreViewControllerDelegate>
 
+@property (nonatomic, assign) CGRect frame;
 @property (strong, nonatomic) HMStartupViewController *startupViewController;
 @property (strong, nonatomic) HMMainViewController *mainViewController;
 @property (strong, nonatomic) HMScoreViewController *scoreViewController;

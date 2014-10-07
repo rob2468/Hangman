@@ -14,7 +14,7 @@
                 <outlet property="numberOfGuessAllowedForEachWordLabel" destination="RMh-cO-RVx" id="sYh-SR-e8N"/>
                 <outlet property="numberOfWordsToGuessLabel" destination="pAh-kZ-4he" id="UHk-4Z-J10"/>
                 <outlet property="numberOfWordsTriedLabel" destination="roF-Q3-QdA" id="IXW-V1-SkU"/>
-                <outlet property="prisonerView" destination="hM2-4P-JDg" id="A79-Ta-rLR"/>
+                <outlet property="prisonerImageView" destination="ibQ-kB-0O5" id="zQK-Vy-R3v"/>
                 <outlet property="skipWordButton" destination="nK2-vU-KxF" id="cXZ-yO-TGQ"/>
                 <outlet property="statusLabel" destination="BLl-zy-APG" id="hVh-uw-zxi"/>
                 <outlet property="textFieldContentView" destination="0Yt-00-4rJ" id="0TH-0t-fzk"/>
@@ -31,20 +31,12 @@
                     <rect key="frame" x="8" y="-328" width="160" height="946"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" id="hM2-4P-JDg">
+                        <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prisonerImage" id="ibQ-kB-0O5">
                             <rect key="frame" x="0.0" y="0.0" width="160" height="678"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" id="JnS-aA-vCB">
-                                    <rect key="frame" x="0.0" y="328" width="160" height="350"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EMu-nT-Lkg">
                     <rect key="frame" x="8" y="28" width="72" height="29"/>
@@ -96,13 +88,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BLl-zy-APG">
-                    <rect key="frame" x="217" y="140" width="82" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" id="0Yt-00-4rJ">
                     <rect key="frame" x="0.0" y="479" width="320" height="47"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -148,6 +133,13 @@
                     <rect key="frame" x="217" y="54" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BLl-zy-APG">
+                    <rect key="frame" x="191" y="216" width="110" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -156,6 +148,9 @@
             <point key="canvasLocation" x="84" y="225"/>
         </view>
     </objects>
+    <resources>
+        <image name="prisonerImage" width="160" height="678"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

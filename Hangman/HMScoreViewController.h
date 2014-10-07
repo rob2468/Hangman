@@ -12,6 +12,7 @@
 
 @interface HMScoreViewController : UIViewController
 
+@property (nonatomic, assign) CGRect frame;
 @property (nonatomic, assign) id<HMScoreViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;

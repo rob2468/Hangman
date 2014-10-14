@@ -22,11 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.frame = self.frame;
-    
+        
     startupViewController = [[HMStartupViewController alloc] initWithNibName:@"HMStartupViewController" bundle:nil];
-    startupViewController.frame = self.view.frame;
     startupViewController.delegate = self;
     [self.view addSubview:startupViewController.view];
 }
@@ -38,7 +35,6 @@
     self.startupViewController = nil;
     
     mainViewController = [[HMMainViewController alloc] initWithNibName:@"HMMainViewController" bundle:nil];
-    mainViewController.frame = self.view.frame;
     mainViewController.delegate = self;
     [self.view addSubview:mainViewController.view];
 }
@@ -55,7 +51,6 @@
     mainViewController = nil;
     
     scoreViewController = [[HMScoreViewController alloc] initWithNibName:@"HMScoreViewController" bundle:nil];
-    scoreViewController.frame = self.view.frame;
     scoreViewController.delegate = self;
     [self.view addSubview:scoreViewController.view];
 }
@@ -66,7 +61,6 @@
     mainViewController = nil;
     
     startupViewController = [[HMStartupViewController alloc] initWithNibName:@"HMStartupViewController" bundle:nil];
-    startupViewController.frame = self.view.frame;
     startupViewController.delegate = self;
     [self.view addSubview:startupViewController.view];
 }
@@ -83,7 +77,6 @@
     scoreViewController = nil;
     
     startupViewController = [[HMStartupViewController alloc] initWithNibName:@"HMStartupViewController" bundle:nil];
-    startupViewController.frame = self.view.frame;
     startupViewController.delegate = self;
     [self.view addSubview:startupViewController.view];
 }

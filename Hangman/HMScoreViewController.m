@@ -19,9 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.frame = self.frame;
-    
     [self getTestResultsMethod];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
 }
 
 #pragma mark

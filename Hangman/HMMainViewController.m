@@ -10,13 +10,13 @@
 #import "HMStaticData.h"
 #import "UIView+Toast.h"
 
-CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
-CGFloat TextFieldContentViewOriginHeight;
-NSString *correctMsg = @"Great!";
-NSString *failMsg = @"Fail!";
+const static CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
+static CGFloat TextFieldContentViewOriginHeight;
+const static NSString *correctMsg = @"Great!";
+const static NSString *failMsg = @"Fail!";
 
-CGFloat TopCoverHeightOfPrisonerView = 309.0;
-CGFloat BottomGapHeightOfPrisonerView = 34.0;
+const static CGFloat TopCoverHeightOfPrisonerView = 309.0;
+const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
 
 @interface HMMainViewController ()
 
@@ -26,19 +26,6 @@ CGFloat BottomGapHeightOfPrisonerView = 34.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.frame = self.frame;
-    
-    TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
-    
-    CGRect frame = self.gallowsView.frame;
-    frame.origin.y = -TopCoverHeightOfPrisonerView;
-    frame.size.height = TopCoverHeightOfPrisonerView+self.view.frame.size.height-BottomGapHeightOfPrisonerView;
-    self.gallowsView.frame = frame;
-    
-    frame = self.prisonerImageView.frame;
-    frame.origin.y = self.gallowsView.frame.size.height-self.prisonerImageView.frame.size.height;
-    self.prisonerImageView.frame = frame;
     
     self.hangAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.gallowsView];
     self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.prisonerImageView]];
@@ -50,6 +37,24 @@ CGFloat BottomGapHeightOfPrisonerView = 34.0;
     self.numberOfWordsToGuessLabel.text = [NSString stringWithFormat:@"%ld", (long)staticData.numberOfWordsToGuess];
     
     [self giveMeAWordMethod];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    
+    TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
+    
+    CGRect frame = self.gallowsView.frame;
+    frame.origin.y = -TopCoverHeightOfPrisonerView;
+    frame.size.height = TopCoverHeightOfPrisonerView+self.view.frame.size.height-BottomGapHeightOfPrisonerView;
+    self.gallowsView.frame = frame;
+    
+    frame = self.prisonerImageView.frame;
+    frame.origin.y = self.gallowsView.frame.size.height-self.prisonerImageView.frame.size.height;
+    self.prisonerImageView.frame = frame;
 }
 
 #pragma mark
@@ -182,7 +187,7 @@ CGFloat BottomGapHeightOfPrisonerView = 34.0;
             // fail to guess this word
             if (guessed == 0)
             {
-                self.statusLabel.text = failMsg;
+                self.statusLabel.text = [NSString stringWithFormat:@"%@", failMsg];
                 self.skipWordButton.hidden = YES;
                 self.nextWordButton.hidden = NO;
                 [self addFailAnimate];
@@ -200,7 +205,7 @@ CGFloat BottomGapHeightOfPrisonerView = 34.0;
                                        nil, @"title", nil];
             [self toastView:toastInfo];
             
-            self.statusLabel.text = failMsg;
+            self.statusLabel.text = [NSString stringWithFormat:@"%@", failMsg];
             self.skipWordButton.hidden = YES;
             self.nextWordButton.hidden = NO;
         }
@@ -210,7 +215,7 @@ CGFloat BottomGapHeightOfPrisonerView = 34.0;
             NSRange range = [word rangeOfCharacterFromSet:cs];
             if (range.location == NSNotFound)
             {
-                self.statusLabel.text = correctMsg;
+                self.statusLabel.text = [NSString stringWithFormat:@"%@", correctMsg];
                 self.skipWordButton.hidden = YES;
                 self.nextWordButton.hidden = NO;
             }

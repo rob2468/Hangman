@@ -13,7 +13,6 @@
 @interface HMMainViewController : UIViewController
 <UITextFieldDelegate, UIAlertViewDelegate>
 
-@property (nonatomic, assign) CGRect frame;
 @property (nonatomic, assign) id<HMMainViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UILabel *numberOfWordsTriedLabel;

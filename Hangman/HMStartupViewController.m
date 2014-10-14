@@ -18,8 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.frame = self.frame;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
 }
 
 - (IBAction)startGameButtonTouchUpInside:(UIButton *)sender

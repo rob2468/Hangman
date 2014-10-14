@@ -27,6 +27,9 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.maskView.layer.shadowOpacity = 0.5f;
+    self.maskView.layer.shadowOffset = CGSizeMake(0.0, 1.0f);
+    
     self.hangAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.gallowsView];
     self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.prisonerImageView]];
     self.gravityBehavior.gravityDirection = CGVectorMake(0.0, -1.0);

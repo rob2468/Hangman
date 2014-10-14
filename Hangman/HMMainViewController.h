@@ -15,6 +15,8 @@
 
 @property (nonatomic, assign) id<HMMainViewControllerDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UIView *maskView;
+
 @property (weak, nonatomic) IBOutlet UILabel *numberOfWordsTriedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfWordsToGuessLabel;
 @property (weak, nonatomic) IBOutlet UIButton *skipWordButton;

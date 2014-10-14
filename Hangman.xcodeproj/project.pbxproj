@@ -23,6 +23,7 @@
 		850E846E19E2928900F4CBFF /* HMStaticData.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E846D19E2928900F4CBFF /* HMStaticData.m */; };
 		850E847419E29E1300F4CBFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850E847319E29E1300F4CBFF /* QuartzCore.framework */; };
 		850E847819E29F9100F4CBFF /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E847719E29F9100F4CBFF /* UIView+Toast.m */; };
+		855BEAC319ED4B66009CE243 /* HMHangmanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 855BEAC219ED4B66009CE243 /* HMHangmanView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		850E847319E29E1300F4CBFF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		850E847619E29F9100F4CBFF /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		850E847719E29F9100F4CBFF /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		855BEAC119ED4B66009CE243 /* HMHangmanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMHangmanView.h; sourceTree = "<group>"; };
+		855BEAC219ED4B66009CE243 /* HMHangmanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMHangmanView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,8 @@
 				850E845F19E2230400F4CBFF /* HMMainViewController.h */,
 				850E846019E2230400F4CBFF /* HMMainViewController.m */,
 				850E846119E2230400F4CBFF /* HMMainViewController.xib */,
+				855BEAC119ED4B66009CE243 /* HMHangmanView.h */,
+				855BEAC219ED4B66009CE243 /* HMHangmanView.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				850E847819E29F9100F4CBFF /* UIView+Toast.m in Sources */,
+				855BEAC319ED4B66009CE243 /* HMHangmanView.m in Sources */,
 				850E846E19E2928900F4CBFF /* HMStaticData.m in Sources */,
 				850E846719E2231300F4CBFF /* HMScoreViewController.m in Sources */,
 				850E843B19E19CAA00F4CBFF /* HMViewController.m in Sources */,
@@ -487,6 +493,7 @@
 				850E845419E19CAA00F4CBFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		850E845519E19CAA00F4CBFF /* Build configuration list for PBXNativeTarget "HangmanTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +502,7 @@
 				850E845719E19CAA00F4CBFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

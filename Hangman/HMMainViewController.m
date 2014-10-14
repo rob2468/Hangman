@@ -7,16 +7,14 @@
 //
 
 #import "HMMainViewController.h"
+#import "HMHangmanView.h"
 #import "HMStaticData.h"
 #import "UIView+Toast.h"
 
-const static CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
+const static CGFloat PortraitKeybordHeight = 216;
 static CGFloat TextFieldContentViewOriginHeight;
 const static NSString *correctMsg = @"Great!";
 const static NSString *failMsg = @"Fail!";
-
-const static CGFloat TopCoverHeightOfPrisonerView = 309.0;
-const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
 
 @interface HMMainViewController ()
 
@@ -29,13 +27,7 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
     
     self.maskView.layer.shadowOpacity = 0.5f;
     self.maskView.layer.shadowOffset = CGSizeMake(0.0, 1.0f);
-    
-    self.hangAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.gallowsView];
-    self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.prisonerImageView]];
-    self.gravityBehavior.gravityDirection = CGVectorMake(0.0, -1.0);
-    self.collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.prisonerImageView]];
-    self.collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
-    
+    [self.gallowsView initiate];
     HMStaticData *staticData = [HMStaticData instance];
     self.numberOfWordsToGuessLabel.text = [NSString stringWithFormat:@"%ld", (long)staticData.numberOfWordsToGuess];
     
@@ -49,15 +41,6 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     
     TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
-    
-    CGRect frame = self.gallowsView.frame;
-    frame.origin.y = -TopCoverHeightOfPrisonerView;
-    frame.size.height = TopCoverHeightOfPrisonerView+self.view.frame.size.height-BottomGapHeightOfPrisonerView;
-    self.gallowsView.frame = frame;
-    
-    frame = self.prisonerImageView.frame;
-    frame.origin.y = self.gallowsView.frame.size.height-self.prisonerImageView.frame.size.height;
-    self.prisonerImageView.frame = frame;
 }
 
 #pragma mark
@@ -90,7 +73,6 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
                                {
                                    NSError *error;
                                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-//                                   NSLog(@"%@", json);
                                    [self performSelectorOnMainThread:@selector(postGiveMeAWordSuccess:) withObject:json waitUntilDone:YES];
                                }
                            }];
@@ -103,9 +85,12 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
 
 - (void)postGiveMeAWordSuccess:(NSDictionary *)data
 {
+    [self.gallowsView resetToOriginState];
     if (data != nil)
     {
         NSString *word = [data objectForKey:@"word"];
+        
+        // request exceed the last word, finish this round
         if (word == nil)
         {
             NSString *message = [data objectForKey:@"message"];
@@ -118,6 +103,7 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
             [self.delegate mainToastView:toastInfo];
             [self.delegate switchToScoreFromMain];
         }
+        // get a new word successfully
         else
         {
             NSDictionary *jsonData = [data objectForKey:@"data"];
@@ -126,6 +112,7 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
                 NSInteger tried = [[jsonData objectForKey:@"numberOfWordsTried"] integerValue];
                 NSInteger guessed = [[jsonData objectForKey:@"numberOfGuessAllowedForThisWord"] integerValue];
                 
+                self.gallowsView.totalPullTimes = guessed;
                 self.numberOfWordsTriedLabel.text = [NSString stringWithFormat:@"%ld", (long)tried];
                 self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
             }
@@ -166,7 +153,6 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
                                {
                                    NSError *error;
                                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-//                                   NSLog(@"%@", json);
                                    [self performSelectorOnMainThread:@selector(postMakeAGuessSuccess:) withObject:json waitUntilDone:YES];
                                }
                            }];
@@ -184,8 +170,15 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
         NSDictionary *jsonData = [data objectForKey:@"data"];
         if (jsonData != nil)
         {
+            NSInteger lastGuessed = [self.numberOfGuessAllowedForEachWordLabel.text integerValue];
             NSInteger guessed = [[jsonData objectForKey:@"numberOfGuessAllowedForThisWord"] integerValue];
             self.numberOfGuessAllowedForEachWordLabel.text = [NSString stringWithFormat:@"%ld", (long)guessed];
+            
+            // fail to guess this time
+            if (guessed<lastGuessed)
+            {
+                [self.gallowsView pullWithRemainPullTimes:guessed];
+            }
             
             // fail to guess this word
             if (guessed == 0)
@@ -193,10 +186,10 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
                 self.statusLabel.text = [NSString stringWithFormat:@"%@", failMsg];
                 self.skipWordButton.hidden = YES;
                 self.nextWordButton.hidden = NO;
-                [self addFailAnimate];
             }
         }
         NSString *word = [data objectForKey:@"word"];
+        // keep guessing without guess times remain
         if (word == nil)
         {
             NSString *message = [data objectForKey:@"message"];
@@ -212,6 +205,7 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
             self.skipWordButton.hidden = YES;
             self.nextWordButton.hidden = NO;
         }
+        // set word
         else
         {
             NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"*"];
@@ -226,23 +220,10 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
         }
     }
 }
-- (void)addFailAnimate
-{
-    [self.hangAnimator addBehavior:self.gravityBehavior];
-    [self.hangAnimator addBehavior:self.collisionBehavior];
-}
-
-- (void)removeFailAnimate
-{
-    [self.hangAnimator removeAllBehaviors];
-    CGRect frame = self.prisonerImageView.frame;
-    frame.origin.y = self.gallowsView.frame.size.height-self.prisonerImageView.frame.size.height;;
-    self.prisonerImageView.frame = frame;
-}
 
 - (void)animateTextField:(UITextField *)textField up:(BOOL)up
 {
-    float movementDistance = PORTRAIT_KEYBOARD_HEIGHT+self.textFieldContentView.frame.size.height-TextFieldContentViewOriginHeight;
+    float movementDistance = PortraitKeybordHeight+self.textFieldContentView.frame.size.height-TextFieldContentViewOriginHeight;
     const float movementDuration = 0.3f;
     
     float movement = (up? -movementDistance: movementDistance);
@@ -270,7 +251,6 @@ const static CGFloat BottomGapHeightOfPrisonerView = 34.0;
     self.numberOfGuessAllowedForEachWordLabel.text = @"-";
     self.skipWordButton.hidden = NO;
     self.nextWordButton.hidden = YES;
-    [self removeFailAnimate];
     [self giveMeAWordMethod];
 }
 

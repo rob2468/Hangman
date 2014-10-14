@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class HMHangmanView;
 @protocol HMMainViewControllerDelegate;
 
 @interface HMMainViewController : UIViewController
@@ -31,11 +32,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *guessTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextWordButton;
 
-@property (weak, nonatomic) IBOutlet UIView *gallowsView;
-@property (weak, nonatomic) IBOutlet UIImageView *prisonerImageView;
-@property (strong, nonatomic) UIDynamicAnimator *hangAnimator;
-@property (strong, nonatomic) UIGravityBehavior *gravityBehavior;
-@property (strong, nonatomic) UICollisionBehavior *collisionBehavior;
+@property (weak, nonatomic) IBOutlet HMHangmanView *gallowsView;
 
 @end
 

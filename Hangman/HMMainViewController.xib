@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HMMainViewController">
             <connections>
                 <outlet property="activity" destination="bko-O9-A8z" id="POU-Re-Je3"/>
-                <outlet property="gallowsView" destination="RSY-9X-l28" id="UiK-PL-e2b"/>
+                <outlet property="gallowsView" destination="RSY-9X-l28" id="pyX-hV-Orm"/>
                 <outlet property="guessTextField" destination="RNN-ox-SVf" id="9vB-Rf-Nho"/>
                 <outlet property="maskView" destination="inq-kJ-mtT" id="gA0-F7-Fo8"/>
                 <outlet property="nextWordButton" destination="mpt-MG-MxB" id="HYd-Cj-yhU"/>
                 <outlet property="numberOfGuessAllowedForEachWordLabel" destination="RMh-cO-RVx" id="sYh-SR-e8N"/>
                 <outlet property="numberOfWordsToGuessLabel" destination="pAh-kZ-4he" id="UHk-4Z-J10"/>
                 <outlet property="numberOfWordsTriedLabel" destination="roF-Q3-QdA" id="IXW-V1-SkU"/>
-                <outlet property="prisonerImageView" destination="ibQ-kB-0O5" id="zQK-Vy-R3v"/>
                 <outlet property="skipWordButton" destination="nK2-vU-KxF" id="cXZ-yO-TGQ"/>
                 <outlet property="statusLabel" destination="BLl-zy-APG" id="hVh-uw-zxi"/>
                 <outlet property="textFieldContentView" destination="0Yt-00-4rJ" id="0TH-0t-fzk"/>
@@ -27,7 +27,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view userInteractionEnabled="NO" contentMode="scaleToFill" id="RSY-9X-l28">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" id="RSY-9X-l28" customClass="HMHangmanView">
                     <rect key="frame" x="80" y="-309" width="160" height="843"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -37,6 +37,9 @@
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="prisonerImageView" destination="ibQ-kB-0O5" id="daY-1p-xJ1"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" id="inq-kJ-mtT">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>

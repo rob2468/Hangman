@@ -8,9 +8,9 @@
 
 #import "HMHangmanView.h"
 
-const static CGFloat TopCoverHeightOfPrisonerView = 310.0;  // when "prisoner" is pulled highest, the top height that out of the screen
+const static CGFloat TopCoverHeightOfPrisonerView = 309.0;  // when "prisoner" is pulled highest, the top height that out of the screen
 static CGFloat AppFrameHeight;                              // the height of the app
-const static CGFloat BottomGapHeightOfPrisonerView = 34.0;  // when "prisoner" is pulles lowest, the height from the bottom of the screen
+const static CGFloat BottomGapHeightOfPrisonerView = 0.0;  // when "prisoner" is pulles lowest, the height from the bottom of the screen
 
 static CGFloat BaseHeight;                      // the shortest height of this container view, equal the height of content view, i.e. the image view's height
 const static CGFloat PullHeight = 50.0f;        // pull up 50.0 for the last wrong guess
@@ -28,6 +28,10 @@ const static CGFloat PullHeight = 50.0f;        // pull up 50.0 for the last wro
     frame.size.height = BaseHeight;
     frame.origin.y = -(frame.size.height + BottomGapHeightOfPrisonerView - AppFrameHeight);
     self.frame = frame;
+    
+    frame = self.prisonerImageView.frame;
+    frame.origin.y = 0;
+    self.prisonerImageView.frame = frame;
     
     self.hangAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
     self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.prisonerImageView]];
@@ -61,7 +65,7 @@ const static CGFloat PullHeight = 50.0f;        // pull up 50.0 for the last wro
     CGRect frame = self.frame;
     if (times==0)
     {
-        frame.size.height = BaseHeight + IntervalHeight*(totalPullTimes-times+1) + PullHeight;
+        frame.size.height = BaseHeight + IntervalHeight*(totalPullTimes-times-1) + PullHeight;
     }
     else
     {

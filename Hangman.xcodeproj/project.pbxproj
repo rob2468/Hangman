@@ -24,6 +24,7 @@
 		850E847419E29E1300F4CBFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850E847319E29E1300F4CBFF /* QuartzCore.framework */; };
 		850E847819E29F9100F4CBFF /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E847719E29F9100F4CBFF /* UIView+Toast.m */; };
 		855BEAC319ED4B66009CE243 /* HMHangmanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 855BEAC219ED4B66009CE243 /* HMHangmanView.m */; };
+		85A2130019F28BA900A86D6A /* HMGuessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A212FF19F28BA900A86D6A /* HMGuessView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		850E847719E29F9100F4CBFF /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		855BEAC119ED4B66009CE243 /* HMHangmanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMHangmanView.h; sourceTree = "<group>"; };
 		855BEAC219ED4B66009CE243 /* HMHangmanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMHangmanView.m; sourceTree = "<group>"; };
+		85A212FE19F28BA900A86D6A /* HMGuessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGuessView.h; sourceTree = "<group>"; };
+		85A212FF19F28BA900A86D6A /* HMGuessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGuessView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 				850E846119E2230400F4CBFF /* HMMainViewController.xib */,
 				855BEAC119ED4B66009CE243 /* HMHangmanView.h */,
 				855BEAC219ED4B66009CE243 /* HMHangmanView.m */,
+				85A212FE19F28BA900A86D6A /* HMGuessView.h */,
+				85A212FF19F28BA900A86D6A /* HMGuessView.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 				850E843519E19CAA00F4CBFF /* main.m in Sources */,
 				850E845D19E2205300F4CBFF /* HMStartupViewController.m in Sources */,
 				850E846219E2230400F4CBFF /* HMMainViewController.m in Sources */,
+				85A2130019F28BA900A86D6A /* HMGuessView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

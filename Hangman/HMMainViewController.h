@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class HMHangmanView;
+@class HMHangmanView, HMGuessView;
 @protocol HMMainViewControllerDelegate;
 
 @interface HMMainViewController : UIViewController
@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *wordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
-@property (weak, nonatomic) IBOutlet UIView *textFieldContentView;
+@property (weak, nonatomic) IBOutlet HMGuessView *textFieldContentView;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfGuessAllowedForEachWordLabel;
 @property (weak, nonatomic) IBOutlet UITextField *guessTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextWordButton;

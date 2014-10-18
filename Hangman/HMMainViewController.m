@@ -8,11 +8,10 @@
 
 #import "HMMainViewController.h"
 #import "HMHangmanView.h"
+#import "HMGuessView.h"
 #import "HMStaticData.h"
 #import "UIView+Toast.h"
 
-const static CGFloat PortraitKeybordHeight = 216;
-static CGFloat TextFieldContentViewOriginHeight;
 const static NSString *correctMsg = @"Great!";
 const static NSString *failMsg = @"Fail!";
 
@@ -40,7 +39,7 @@ const static NSString *failMsg = @"Fail!";
     
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     
-    TextFieldContentViewOriginHeight = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
+    self.textFieldContentView.textFieldContentViewOriginYPos = self.view.frame.size.height-self.textFieldContentView.frame.origin.y;
 }
 
 #pragma mark
@@ -221,19 +220,6 @@ const static NSString *failMsg = @"Fail!";
     }
 }
 
-- (void)animateTextField:(UITextField *)textField up:(BOOL)up
-{
-    float movementDistance = PortraitKeybordHeight+self.textFieldContentView.frame.size.height-TextFieldContentViewOriginHeight;
-    const float movementDuration = 0.3f;
-    
-    float movement = (up? -movementDistance: movementDistance);
-    
-    [UIView beginAnimations:@"anim" context:nil];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:movementDuration];
-    self.textFieldContentView.frame = CGRectOffset(self.textFieldContentView.frame, 0, movement);
-    [UIView commitAnimations];
-}
 
 #pragma mark
 - (IBAction)skipWordButtonTouchUpInsider:(UIButton *)sender
@@ -276,12 +262,12 @@ const static NSString *failMsg = @"Fail!";
 #pragma mark Text Field Delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self animateTextField:nil up:YES];
+    [self.textFieldContentView animateTextField:nil up:YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self animateTextField:nil up:NO];
+    [self.textFieldContentView animateTextField:nil up:NO];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

@@ -25,6 +25,7 @@
 		850E847819E29F9100F4CBFF /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E847719E29F9100F4CBFF /* UIView+Toast.m */; };
 		855BEAC319ED4B66009CE243 /* HMHangmanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 855BEAC219ED4B66009CE243 /* HMHangmanView.m */; };
 		85A2130019F28BA900A86D6A /* HMGuessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A212FF19F28BA900A86D6A /* HMGuessView.m */; };
+		85A2130319F29D7C00A86D6A /* HMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A2130219F29D7C00A86D6A /* HMProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		855BEAC219ED4B66009CE243 /* HMHangmanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMHangmanView.m; sourceTree = "<group>"; };
 		85A212FE19F28BA900A86D6A /* HMGuessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMGuessView.h; sourceTree = "<group>"; };
 		85A212FF19F28BA900A86D6A /* HMGuessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMGuessView.m; sourceTree = "<group>"; };
+		85A2130119F29D7C00A86D6A /* HMProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMProgressView.h; sourceTree = "<group>"; };
+		85A2130219F29D7C00A86D6A /* HMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +179,8 @@
 				855BEAC219ED4B66009CE243 /* HMHangmanView.m */,
 				85A212FE19F28BA900A86D6A /* HMGuessView.h */,
 				85A212FF19F28BA900A86D6A /* HMGuessView.m */,
+				85A2130119F29D7C00A86D6A /* HMProgressView.h */,
+				85A2130219F29D7C00A86D6A /* HMProgressView.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				850E846719E2231300F4CBFF /* HMScoreViewController.m in Sources */,
 				850E843B19E19CAA00F4CBFF /* HMViewController.m in Sources */,
 				850E843819E19CAA00F4CBFF /* AppDelegate.m in Sources */,
+				85A2130319F29D7C00A86D6A /* HMProgressView.m in Sources */,
 				850E843519E19CAA00F4CBFF /* main.m in Sources */,
 				850E845D19E2205300F4CBFF /* HMStartupViewController.m in Sources */,
 				850E846219E2230400F4CBFF /* HMMainViewController.m in Sources */,

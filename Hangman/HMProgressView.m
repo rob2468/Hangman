@@ -36,29 +36,35 @@
 
 @end
 
+const CGFloat interval = 320.0/80.0;        // one step length of increasing one progress
+
 @implementation HMProgressView
 
 - (void)initiate
 {
-    [UIView animateWithDuration:1.0 delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         CGRect frame = self.progress.frame;
-                         frame.origin.y = 0;
-                         self.progress.frame = frame;
-                     } completion:^(BOOL finished) {
-                         [UIView animateWithDuration:1.0
-                                               delay:0
-                                             options:UIViewAnimationOptionCurveEaseIn
-                                          animations:^{
-                                              CGRect frame = self.progress.frame;
-                                              frame.origin.y = 320;
-                                              self.progress.frame = frame;
-                                          } completion:^(BOOL finished) {
-                                              
-                                          }];
-                         
-                     }];
+    CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    CGPoint p1 = CGPointMake(35.0, 480.0);
+    CGPoint p2 = CGPointMake(35.0, 160.0);
+    CGPoint p3 = CGPointMake(35.0, 480.0);
+    NSArray *values = [NSArray arrayWithObjects:
+                       [NSValue valueWithCGPoint:p1],
+                       [NSValue valueWithCGPoint:p2],
+                       [NSValue valueWithCGPoint:p3], nil];
+    [anim setValues:values];
+    [anim setDuration:2.0];
+    CAMediaTimingFunction *tf1 = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    CAMediaTimingFunction *tf2 = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    NSArray *timingFunctions = [NSArray arrayWithObjects:tf1, tf2, nil];
+    [anim setTimingFunctions:timingFunctions];
+    [self.progress.layer addAnimation:anim forKey:@"ani"];
+}
+
+- (void)increaseOneStepProgress
+{
+    
+    CGRect frame = self.progress.frame;
+    frame.origin.y -= interval;
+    self.progress.frame = frame;
 }
 
 @end

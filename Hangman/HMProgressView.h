@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet HMProgress *progress;
 
-- (void)initiate;
+- (void)initiate;                   // animate the progress bar when initiate;
+- (void)increaseOneStepProgress;    //
 
 @end

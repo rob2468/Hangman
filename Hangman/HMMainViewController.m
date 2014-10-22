@@ -86,6 +86,7 @@ const static NSString *failMsg = @"Fail!";
 
 - (void)postGiveMeAWordSuccess:(NSDictionary *)data
 {
+    [self.progressView increaseOneStepProgress];
     [self.gallowsView resetToOriginState];
     if (data != nil)
     {

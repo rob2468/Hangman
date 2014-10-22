@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class HMProgress;
+
 @interface HMProgressView : UIView
 
-@property (weak, nonatomic) IBOutlet UIView *progress;
+@property (weak, nonatomic) IBOutlet HMProgress *progress;
 
 - (void)initiate;
 

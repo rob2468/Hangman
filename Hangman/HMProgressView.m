@@ -8,14 +8,42 @@
 
 #import "HMProgressView.h"
 
+@interface HMProgress : UIView
+
+@end
+
+@implementation HMProgress
+
+- (void)drawRect:(CGRect)rect
+{
+    
+}
+
+@end
+
 @implementation HMProgressView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)initiate
+{
+    [UIView animateWithDuration:1.0 delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         CGRect frame = self.progress.frame;
+                         frame.origin.y = 0;
+                         self.progress.frame = frame;
+                     } completion:^(BOOL finished) {
+                         [UIView animateWithDuration:1.0
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseIn
+                                          animations:^{
+                                              CGRect frame = self.progress.frame;
+                                              frame.origin.y = 320;
+                                              self.progress.frame = frame;
+                                          } completion:^(BOOL finished) {
+                                              
+                                          }];
+                         
+                     }];
 }
-*/
 
 @end

@@ -10,4 +10,8 @@
 
 @interface HMProgressView : UIView
 
+@property (weak, nonatomic) IBOutlet UIView *progress;
+
+- (void)initiate;
+
 @end

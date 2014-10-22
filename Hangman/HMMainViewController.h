@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class HMHangmanView, HMGuessView;
+@class HMHangmanView, HMGuessView, HMProgressView;
 @protocol HMMainViewControllerDelegate;
 
 @interface HMMainViewController : UIViewController
@@ -33,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextWordButton;
 
 @property (weak, nonatomic) IBOutlet HMHangmanView *gallowsView;
+
+@property (weak, nonatomic) IBOutlet HMProgressView *progressView;
 
 @end
 

@@ -9,6 +9,7 @@
 #import "HMMainViewController.h"
 #import "HMHangmanView.h"
 #import "HMGuessView.h"
+#import "HMProgressView.h"
 #import "HMStaticData.h"
 #import "UIView+Toast.h"
 
@@ -29,6 +30,7 @@ const static NSString *failMsg = @"Fail!";
     [self.gallowsView initiate];
     HMStaticData *staticData = [HMStaticData instance];
     self.numberOfWordsToGuessLabel.text = [NSString stringWithFormat:@"%ld", (long)staticData.numberOfWordsToGuess];
+    [self.progressView initiate];
     
     [self giveMeAWordMethod];
 }

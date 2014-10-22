@@ -15,6 +15,7 @@
                 <outlet property="numberOfGuessAllowedForEachWordLabel" destination="RMh-cO-RVx" id="sYh-SR-e8N"/>
                 <outlet property="numberOfWordsToGuessLabel" destination="pAh-kZ-4he" id="UHk-4Z-J10"/>
                 <outlet property="numberOfWordsTriedLabel" destination="roF-Q3-QdA" id="IXW-V1-SkU"/>
+                <outlet property="progressView" destination="JDJ-Cg-chD" id="kYy-jr-gqD"/>
                 <outlet property="skipWordButton" destination="nK2-vU-KxF" id="cXZ-yO-TGQ"/>
                 <outlet property="statusLabel" destination="BLl-zy-APG" id="hVh-uw-zxi"/>
                 <outlet property="textFieldContentView" destination="0Yt-00-4rJ" id="0TH-0t-fzk"/>
@@ -203,10 +204,13 @@
                         <view contentMode="scaleToFill" id="2mC-AQ-32w">
                             <rect key="frame" x="25" y="0.0" width="20" height="320"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.85882352939999995" green="0.81176470590000005" blue="0.79215686269999996" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" name="secondarySelectedControlColor" catalog="System" colorSpace="catalog"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="progress" destination="2mC-AQ-32w" id="rbF-tx-fCA"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.85882352941176465" green="0.81176470588235294" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
